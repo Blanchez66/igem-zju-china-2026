@@ -1,0 +1,15 @@
+.site-footer {
+  background-color: #343a40;
+}
+
+.site-footer a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: white;
+  text-decoration: underline;
+}

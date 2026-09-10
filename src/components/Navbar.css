@@ -1,0 +1,7 @@
+.wiki-navbar {
+  background-color: var(--bs-tertiary-bg);
+}
+
+.wiki-navbar-nav {
+  margin-left: auto;
+}
