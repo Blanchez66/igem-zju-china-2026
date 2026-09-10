@@ -1,0 +1,12 @@
+.home-container {
+  background-color: #F0FAFF;
+}
+
+.home-page {
+  min-height: calc(100vh - 56px);
+}
+
+.home-page-first {
+  background-color: #F0FAFF;
+  transition: opacity 120ms ease-out;
+}

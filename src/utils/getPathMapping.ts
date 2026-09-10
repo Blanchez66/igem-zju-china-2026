@@ -5,6 +5,7 @@ export const getPathMapping = () => {
     [key: string]: {
       name: string | undefined;
       title: string | undefined;
+      navigationTitle: string | undefined;
       component: React.FC;
       lead: string | undefined;
     };
@@ -13,6 +14,7 @@ export const getPathMapping = () => {
       map[item.path] = {
         name: item.name,
         title: item.title,
+        navigationTitle: item.name,
         component: item.component,
         lead: item.lead,
       };
@@ -22,6 +24,7 @@ export const getPathMapping = () => {
           map[page.path] = {
             name: page.name,
             title: page.title,
+            navigationTitle: page.name,
             component: page.component,
             lead: page.lead,
           };

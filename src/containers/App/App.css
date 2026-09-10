@@ -1,5 +1,47 @@
+html,
+body,
+#root {
+  background-color: white !important;
+}
+
 body {
   padding-top: 56px;
+}
+
+.app {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px);
+}
+
+.content {
+  background-color: white;
+  flex: 1;
+}
+
+html.scrollbar,
+body.scrollbar {
+  --scrollbar-thumb-color: #006CD1;
+  --scrollbar-track-color: transparent;
+  scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
+  scrollbar-width: thin;
+}
+
+html.scrollbar::-webkit-scrollbar,
+body.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+html.scrollbar::-webkit-scrollbar-track,
+body.scrollbar::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track-color);
+}
+
+html.scrollbar::-webkit-scrollbar-thumb,
+body.scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: 8px;
 }
 
 /* CALLOUT */

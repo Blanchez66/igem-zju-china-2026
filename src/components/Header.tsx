@@ -7,7 +7,7 @@ interface HeaderProps {
 
 export function Header({ title, lead }: HeaderProps) {
   return (
-    <header className="wiki-header py-5 mb-5">
+    <header className="header py-5 mb-5">
       <div className="container h-100">
         <div className="row h-100 align-items-center">
           <div className="col-lg-12">

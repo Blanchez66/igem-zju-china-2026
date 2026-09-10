@@ -3,7 +3,7 @@ import "./Footer.css";
 
 export function Footer() {
   return (
-    <footer className="site-footer pt-5 pb-5 footer py-5 mt-5 text-white">
+    <footer className="footer pt-5 pb-5 py-5 mt-5 text-white">
       <div className="container">
         <div className="row mb-4">
           <div className="col-lg-6 col-xs-12">
@@ -63,8 +63,8 @@ export function Footer() {
             <p>
               <small>
                 The repository used to create this website is available at{" "}
-                <a href={`https://github.com/AnyaReese/iGEM26-WP-Tutorial-React`}>
-                  github.com/AnyaReese/iGEM26-WP-Tutorial-React
+                <a href={`https://github.com/Blanchez66/igem-zju-china-2026`}>
+                  github.com/Blanchez66/igem-zju-china-2026
                 </a>
                 .
               </small>
