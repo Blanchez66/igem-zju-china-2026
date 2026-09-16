@@ -7,6 +7,7 @@ import { Navbar } from "../../components/Navbar";
 import { Header } from "../../components/Header";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
+import { Toc } from "../../components/toc";
 
 const App = () => {
   const location = useLocation();
@@ -48,14 +49,15 @@ const App = () => {
                 key={path}
                 path={path}
                 element={
-                  <>
-                    {path !== "/" && (
-                      <Header title={title || ""} lead={lead || ""} />
-                    )}
-                    <div className={path === "/" ? "home-container" : "container"}>
+                  path === "/" ? (
+                    <div className="home-container">
                       <Component />
                     </div>
-                  </>
+                  ) : (
+                    <Toc key={path} title={title || ""} lead={lead || ""}>
+                      <Component />
+                    </Toc>
+                  )
                 }
               />
             ),

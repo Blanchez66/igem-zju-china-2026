@@ -1,7 +1,7 @@
-import pages from "../pages.ts";
+import pages, { unlistedPages } from "../pages.ts";
 
 export const getPathMapping = () => {
-  return pages.reduce<{
+  return [...pages, ...unlistedPages].reduce<{
     [key: string]: {
       name: string | undefined;
       title: string | undefined;

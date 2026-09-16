@@ -3,30 +3,28 @@ import Nav from "react-bootstrap/Nav";
 import BootstrapNavbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Pages from "../pages.ts";
 import "./Navbar.css";
 
 export function Navbar() {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
-  const isHomePage = location.pathname === "/";
+  const navbarRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (!isHomePage) {
-      setIsVisible(true);
-      return;
-    }
-
+    let pointerInNavbar = false;
     const updateNavbarVisibility = (mouseY?: number) => {
       const isAtTop = window.scrollY <= 8;
       const isMouseNearNavbar = mouseY !== undefined && mouseY <= 80;
 
-      setIsVisible(isAtTop || isMouseNearNavbar);
+      setIsVisible(isAtTop || isMouseNearNavbar || pointerInNavbar);
     };
 
     const handleScroll = () => updateNavbarVisibility();
     const handleMouseMove = (event: MouseEvent) => {
+      pointerInNavbar = event.target instanceof Node &&
+        !!navbarRef.current?.contains(event.target);
       updateNavbarVisibility(event.clientY);
     };
 
@@ -38,7 +36,7 @@ export function Navbar() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [isHomePage]);
+  }, [location.pathname]);
 
   const pages = Pages.map((item, pageIndex) => {
     if ("folder" in item && item.folder) {
@@ -75,6 +73,7 @@ export function Navbar() {
 
   return (
     <BootstrapNavbar
+      ref={navbarRef}
       expand="lg"
       className={`navbar ${isVisible ? "" : "navbar-hidden"}`}
       fixed="top"

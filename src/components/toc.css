@@ -1,0 +1,96 @@
+.page-article h2,
+.page-article h3 {
+  scroll-margin-top: 112px;
+}
+
+.page-toc {
+  position: fixed;
+  top: 104px;
+  left: 20px;
+  width: 248px;
+  max-height: calc(100dvh - 128px);
+  padding: 20px 12px;
+  background: white;
+  z-index: 1020;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(calc(-100% - 24px));
+  transition:
+    transform 240ms ease,
+    opacity 240ms ease,
+    visibility 240ms;
+}
+
+.page-toc-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.page-toc-title {
+  margin: 0 8px 16px;
+  color: inherit;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.page-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: calc(100dvh - 220px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.page-toc-list a {
+  display: block;
+  padding: 10px 12px;
+  border-left: 3px solid transparent;
+  color: inherit;
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+.page-toc-level-2 a {
+  padding-left: 28px;
+  font-size: 15px;
+}
+.page-toc-list a:hover {
+  text-decoration: underline;
+}
+.page-toc-list a[aria-current="location"] {
+  border-left-color: currentColor;
+  font-weight: 700;
+}
+.page-toc-list a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+@media (min-width: 1200px) {
+  .page-layout-with-toc,
+  .page-header-with-toc {
+    padding-left: 288px;
+    padding-right: 24px;
+  }
+  .page-layout-with-toc .page-article,
+  .page-header-with-toc .header > .container {
+    max-width: 1100px;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .page-toc {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-toc {
+    transition: none;
+  }
+}

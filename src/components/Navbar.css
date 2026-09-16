@@ -19,13 +19,18 @@
 }
 
 .navbar {
-  background-color: #86C5FF;
+  background-color: #2967A6;
   min-height: 80px;
   transition: transform 260ms ease;
 }
 
 .navbar-hidden {
   transform: translateY(-100%);
+}
+
+.navbar-hidden .dropdown-menu {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .navbar-brand {
@@ -71,8 +76,10 @@
 }
 
 .navbar .dropdown-menu {
+  --bs-dropdown-min-width: 0;
+  width: max-content;
   animation: dropdown-slide 180ms ease-out;
-  background-color: #F8E6A0;
+  background-color: #86C5FF;
   font-family: "Doppio One", sans-serif;
 }
 

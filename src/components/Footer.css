@@ -1,6 +1,6 @@
 .footer {
-  background-color: #5B87D2;
-  margin-top: auto !important;
+  background-color: #2967A6;
+  margin-top: clamp(80px, 8vw, 128px) !important;
 }
 
 .footer a {
