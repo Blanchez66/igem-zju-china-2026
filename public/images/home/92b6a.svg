@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="690" height="2800" viewBox="0 0 690 2800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="Steel Pipe / Body" d="M146.735 10H641.714C667.238 10 680 19.3333 680 38V682C680 700.667 667.238 710 641.714 710H48.2857C22.7619 710 10 719.333 10 738V1402C10 1420.67 22.7619 1430 48.2857 1430H641.714C667.238 1430 680 1439.33 680 1458V2122C680 2140.67 667.238 2150 641.714 2150H198.694C173.17 2150 160.408 2159.33 160.408 2178V2800" stroke="url(#paint0_linear_0_59)" stroke-width="20" stroke-linejoin="round"/>
+<defs>
+<linearGradient id="paint0_linear_0_59" x1="345" y1="10" x2="345" y2="2800" gradientUnits="userSpaceOnUse">
+<stop stop-color="#788FAD"/>
+<stop offset="0.48" stop-color="#C7D6E8"/>
+<stop offset="1" stop-color="#667D9E"/>
+</linearGradient>
+</defs>
+</svg>

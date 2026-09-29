@@ -1,0 +1,40 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="478" height="478" viewBox="0 0 478 478" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Container / Yellow Premix" filter="url(#filter0_d_0_24)">
+<rect x="24" y="8" width="430" height="430" rx="94" fill="#F2C952"/>
+<g id="Container / Inner Well">
+<rect x="58" y="42" width="362" height="330" rx="70" fill="#FADE87"/>
+<rect x="61.5" y="45.5" width="355" height="323" rx="66.5" stroke="#FFEDAD" stroke-opacity="0.92" stroke-width="7"/>
+</g>
+<ellipse id="Powder / Main Mound" cx="239" cy="305.5" rx="135" ry="87.5" fill="#FFFCF0"/>
+<ellipse id="Powder / Upper Mound" cx="240.5" cy="235.5" rx="92.5" ry="67.5" fill="#FFFDF5"/>
+<circle id="Powder Grain" cx="114" cy="195" r="2" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_2" cx="158" cy="225" r="3" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_3" cx="202" cy="255" r="4" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_4" cx="246" cy="285" r="5" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_5" cx="286" cy="311" r="2" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_6" cx="330" cy="341" r="3" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_7" cx="124" cy="216" r="4" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_8" cx="168" cy="246" r="5" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_9" cx="208" cy="272" r="2" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_10" cx="252" cy="302" r="3" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_11" cx="296" cy="332" r="4" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_12" cx="340" cy="207" r="5" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_13" cx="130" cy="233" r="2" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_14" cx="174" cy="263" r="3" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_15" cx="218" cy="293" r="4" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_16" cx="262" cy="323" r="5" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_17" cx="302" cy="349" r="2" fill="white" fill-opacity="0.9"/>
+<circle id="Powder Grain_18" cx="346" cy="224" r="3" fill="white" fill-opacity="0.9"/>
+</g>
+<defs>
+<filter id="filter0_d_0_24" x="0" y="0" width="478" height="478" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="16"/>
+<feGaussianBlur stdDeviation="12"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.15 0 0 0 0 0.22 0 0 0 0 0.44 0 0 0 0.14 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_24"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_24" result="shape"/>
+</filter>
+</defs>
+</svg>

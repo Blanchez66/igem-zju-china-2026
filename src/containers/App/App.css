@@ -5,14 +5,14 @@ body,
 }
 
 body {
-  padding-top: 56px;
+  padding-top: 88px;
 }
 
 .app {
   background-color: white;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 88px);
 }
 
 .content {

@@ -10,6 +10,7 @@ import "./Navbar.css";
 export function Navbar() {
   const location = useLocation();
   const [isVisible, setIsVisible] = useState(true);
+  const [expanded, setExpanded] = useState(false);
   const navbarRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -23,7 +24,8 @@ export function Navbar() {
 
     const handleScroll = () => updateNavbarVisibility();
     const handleMouseMove = (event: MouseEvent) => {
-      pointerInNavbar = event.target instanceof Node &&
+      pointerInNavbar =
+        event.target instanceof Node &&
         !!navbarRef.current?.contains(event.target);
       updateNavbarVisibility(event.clientY);
     };
@@ -38,7 +40,9 @@ export function Navbar() {
     };
   }, [location.pathname]);
 
-  const pages = Pages.map((item, pageIndex) => {
+  const pages = Pages.filter(
+    (item) => !("path" in item && item.path === "/"),
+  ).map((item, pageIndex) => {
     if ("folder" in item && item.folder) {
       const folderItems = item.folder.map((subpage, subpageIndex) => {
         if (subpage.path) {
@@ -47,6 +51,8 @@ export function Navbar() {
               key={`subpage-${pageIndex}-${subpageIndex}`}
               as={Link}
               to={subpage.path}
+              active={location.pathname === subpage.path}
+              onClick={() => setExpanded(false)}
             >
               {subpage.name}
             </NavDropdown.Item>
@@ -64,7 +70,13 @@ export function Navbar() {
       );
     } else if ("path" in item && item.path) {
       return (
-        <Nav.Link key={`page-${pageIndex}`} as={Link} to={item.path}>
+        <Nav.Link
+          key={`page-${pageIndex}`}
+          as={Link}
+          to={item.path}
+          active={location.pathname === item.path}
+          onClick={() => setExpanded(false)}
+        >
           {item.name}
         </Nav.Link>
       );
@@ -75,23 +87,37 @@ export function Navbar() {
     <BootstrapNavbar
       ref={navbarRef}
       expand="lg"
-      className={`navbar ${isVisible ? "" : "navbar-hidden"}`}
+      expanded={expanded}
+      onToggle={setExpanded}
+      aria-label="Main navigation"
+      className={`nest-navbar ${isVisible || expanded ? "" : "navbar-hidden"}`}
       fixed="top"
     >
-      <Container>
-        <BootstrapNavbar.Brand className="navbar-brand">
-          <Link to="/" className="brand-link">
-            <img
-              src={`${import.meta.env.BASE_URL}images/team-logo.png`}
-              alt={`${import.meta.env.VITE_TEAM_NAME} logo`}
-              className="brand-logo"
-            />
-            <span>{import.meta.env.VITE_TEAM_NAME}</span>
-          </Link>
+      <Container fluid>
+        <BootstrapNavbar.Brand
+          as={Link}
+          to="/"
+          className="brand-link"
+          onClick={() => setExpanded(false)}
+        >
+          NEST
         </BootstrapNavbar.Brand>
         <BootstrapNavbar.Toggle aria-controls="basic-navbar-nav" />
         <BootstrapNavbar.Collapse id="basic-navbar-nav">
-          <Nav className="navbar-nav">{pages}</Nav>
+          <Nav className="navbar-nav">
+            {pages}
+            <span
+              className="navigation-cart"
+              title="Shopping cart — not available yet"
+            >
+              <img
+                src={`${import.meta.env.BASE_URL}images/navigation/cart.svg`}
+                alt="Shopping cart (not available yet)"
+                width="22"
+                height="22"
+              />
+            </span>
+          </Nav>
         </BootstrapNavbar.Collapse>
       </Container>
     </BootstrapNavbar>

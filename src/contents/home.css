@@ -1,12 +1,368 @@
-.home-container {
-  background-color: #F0FAFF;
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
 }
-
-.home-page {
-  min-height: calc(100vh - 56px);
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
 }
-
-.home-page-first {
-  background-color: #F0FAFF;
-  transition: opacity 120ms ease-out;
+@font-face {
+  font-family: Inter;
+  src: url("/fonts/Inter-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rubik Maps";
+  src: url("/fonts/RubikMaps.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Silkscreen;
+  src: url("/fonts/Silkscreen-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+.home-container,
+.nest-home {
+  background: #f6faff;
+}
+.nest-home {
+  font-family: Inter, sans-serif;
+}
+.nest-home p {
+  margin: 0;
+}
+.home-scene {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  scroll-margin-top: 0;
+}
+.home-scene:focus {
+  outline: none;
+}
+.home-scene-canvas {
+  width: 1280px;
+  position: relative;
+  transform-origin: top left;
+}
+.home-water {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+.home-scroll-cue {
+  position: absolute;
+  left: 615px;
+  top: 529px;
+  width: 49px;
+  height: 46px;
+}
+.nest-home button {
+  padding: 0;
+  border: 0;
+}
+.nest-home button:focus-visible,
+.home-scroll-cue:focus-visible {
+  outline: 4px solid #0341c8;
+  outline-offset: -6px;
+}
+.global-burden {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(90deg, #5287ba, #a3c4eb 70%, #eaf3ff);
+}
+.burden-heading {
+  position: absolute;
+  left: 70px;
+  top: 54px;
+  color: #f6faff;
+}
+.home-eyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2.52px;
+}
+.burden-heading h2 {
+  font-size: 43px;
+  line-height: 1;
+  font-weight: 600;
+  margin: 11px 0 0;
+}
+.burden-map-card {
+  position: absolute;
+  left: 515px;
+  top: 115px;
+  width: 737px;
+  height: 497px;
+  background: #ffe387;
+  opacity: 0.9;
+  border-radius: 30px;
+  box-shadow: 0 18px 38px #173b631f;
+}
+.burden-map {
+  position: absolute;
+  left: 499px;
+  top: 145px;
+  width: 738px;
+  height: 436px;
+}
+.world-map {
+  position: absolute;
+  left: 43px;
+  top: 40px;
+}
+.map-legend {
+  position: absolute;
+  left: 408px;
+  top: 383px;
+  width: 296px;
+  height: 62px;
+  color: #173b64;
+  font-size: 11px;
+}
+.map-legend strong {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 18px;
+}
+.map-legend img {
+  display: block;
+}
+.map-legend span:last-child {
+  float: right;
+}
+.burden-person {
+  position: absolute;
+  left: 94px;
+  top: 218.5px;
+  width: 405px;
+  height: 442px;
+  overflow: hidden;
+}
+.burden-person img {
+  position: absolute;
+  width: 100%;
+  height: 93.25%;
+  top: 0.9%;
+  left: -2.42%;
+}
+.burden-stat {
+  position: absolute;
+  left: 630px;
+  top: 275px;
+  width: 500px;
+  height: 168px;
+  text-align: center;
+}
+.burden-stat strong {
+  display: block;
+  margin: 15.5px 0 23px;
+  font-size: 82px;
+  font-weight: 600;
+  line-height: 0.95;
+  color: #0341c8;
+}
+.burden-stat p {
+  font-size: 17px;
+  line-height: 1.25;
+  color: #173b63d1;
+}
+.burden-source {
+  position: absolute;
+  left: 1002px;
+  top: 625px;
+  font-size: 11px;
+  color: #173b6394;
+}
+/* The Figma scenes are illustrations; scaling their shared coordinate space keeps pipes and the two knee halves continuous. */
+@media (prefers-reduced-motion: reduce) {
+  .nest-home {
+    scroll-behavior: auto;
+  }
+}
+.home-scroll-cue {
+  display: grid;
+  place-items: center;
+}
+/* Keep exported SVG root geometry, including the original filter padding. */
+.nest-home img[src$=".svg"] {
+  width: auto;
+  height: auto;
+}
+.home-story-mobile {
+  height: auto;
+}
+.home-story-mobile .home-scene-canvas {
+  width: 100%;
+  transform: none !important;
+}
+.home-story-mobile .home-scene-canvas > div {
+  min-height: 820px;
+}
+@media (max-width: 599px) {
+  .home-story-mobile [data-node-id="222:34"],
+  .home-story-mobile [data-node-id="222:45"] {
+    left: 24px;
+    top: 50px;
+    font-size: 12px;
+    width: calc(100% - 48px);
+  }
+  .home-story-mobile [data-node-id="222:35"],
+  .home-story-mobile [data-node-id="222:46"] {
+    left: 24px;
+    top: 88px;
+    font-size: 36px;
+    width: calc(100% - 48px);
+    height: auto;
+  }
+  .home-story-mobile [data-node-id="222:36"],
+  .home-story-mobile [data-node-id="222:47"] {
+    left: 24px;
+    top: 200px;
+    font-size: 16px;
+    line-height: 1.45;
+    width: calc(100% - 48px);
+    height: auto;
+  }
+  .home-story-mobile [data-node-id="222:37"] {
+    left: 24px;
+    top: 330px;
+  }
+  .home-story-mobile [data-node-id="224:94"],
+  .home-story-mobile [data-node-id="224:95"] {
+    left: 24px;
+    top: 30px;
+  }
+  .home-story-mobile [data-node-id="222:31"] {
+    zoom: 0.45;
+    left: 110px;
+    top: 950px;
+  }
+  .home-story-mobile [data-node-id="222:32"] {
+    zoom: 0.45;
+    left: 395px;
+    top: 984px;
+  }
+  .home-story-mobile [data-node-id="222:33"] {
+    zoom: 0.45;
+    left: 40px;
+    top: 972px;
+  }
+  .home-story-mobile [data-node-id="222:39"] {
+    zoom: 0.45;
+    left: 102px;
+    top: 1038px;
+  }
+  .home-story-mobile [data-node-id="224:93"] {
+    zoom: 0.45;
+    left: 550px;
+    top: 996px;
+  }
+  .home-story-mobile [data-node-id="222:41"] {
+    zoom: 0.45;
+    left: 30px;
+    top: 1070px;
+  }
+  .home-story-mobile [data-node-id="222:42"] {
+    zoom: 0.45;
+    left: 86px;
+    top: 1126px;
+  }
+  .home-story-mobile [data-node-id="222:43"] {
+    zoom: 0.45;
+    left: 378px;
+    top: 1088px;
+  }
+  .home-story-mobile [data-node-id="222:44"] {
+    zoom: 0.45;
+    left: 82px;
+    top: 1132px;
+  }
+  .home-story-mobile [data-node-id="224:96"] {
+    zoom: 0.45;
+    left: 635px;
+    top: 1086px;
+  }
+  .home-story-mobile [data-node-id="222:48"],
+  .home-story-mobile [data-node-id="222:51"],
+  .home-story-mobile [data-node-id="222:54"] {
+    left: 24px;
+    top: 340px;
+  }
+  .home-story-mobile [data-node-id="222:49"],
+  .home-story-mobile [data-node-id="222:52"],
+  .home-story-mobile [data-node-id="222:55"] {
+    left: 65px;
+    top: 340px;
+  }
+  .home-story-mobile [data-node-id="222:51"],
+  .home-story-mobile [data-node-id="222:52"] {
+    top: 380px;
+  }
+  .home-story-mobile [data-node-id="222:54"],
+  .home-story-mobile [data-node-id="222:55"] {
+    top: 420px;
+  }
+  .home-story-mobile [data-node-id="222:50"],
+  .home-story-mobile [data-node-id="222:53"],
+  .home-story-mobile [data-node-id="222:56"] {
+    left: 210px;
+    width: 70px;
+    top: 348px;
+  }
+  .home-story-mobile [data-node-id="222:53"] {
+    top: 388px;
+  }
+  .home-story-mobile [data-node-id="222:56"] {
+    top: 428px;
+  }
+  .burden-heading {
+    left: 24px;
+    top: 40px;
+  }
+  .burden-heading h2 {
+    font-size: 34px;
+  }
+  .burden-person {
+    left: 70px;
+    top: 160px;
+    zoom: 0.8;
+  }
+  .burden-map-card {
+    left: 20px;
+    top: 510px;
+    width: calc(100% - 40px);
+    height: 260px;
+  }
+  .burden-map {
+    left: 0;
+    top: 1030px;
+    zoom: 0.45;
+  }
+  .burden-stat {
+    left: 15px;
+    top: 550px;
+    width: calc(100% - 30px);
+  }
+  .burden-stat strong {
+    font-size: 50px;
+  }
+  .burden-stat p {
+    font-size: 15px;
+  }
+  .burden-source {
+    left: auto;
+    right: 24px;
+    top: 790px;
+    font-size: 9px;
+  }
 }

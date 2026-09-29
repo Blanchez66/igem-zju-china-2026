@@ -1,106 +1,158 @@
 @font-face {
-  font-family: "Doppio One";
-  src: url("/fonts/DoppioOne-Regular.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "Work Sans";
+  src: url("/fonts/WorkSans-Medium.ttf") format("truetype");
+  font-weight: 500;
   font-style: normal;
+  font-display: swap;
 }
 
-@font-face {
-  font-family: "Idiqlat";
-  src: url("/fonts/Idiqlat-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-@font-face {
-  font-family: "Idiqlat2";
-  src: url("/fonts/Idiqlat-Light.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-}
-
-.navbar {
-  background-color: #2967A6;
-  min-height: 80px;
+.nest-navbar {
+  --bs-navbar-padding-y: 0;
+  background: linear-gradient(90deg, #a3c4eb 0%, #0341c8 100%);
+  padding: 32px 40px;
+  min-height: 88px;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 500;
   transition: transform 260ms ease;
 }
 
-.navbar-hidden {
+.nest-navbar > .container-fluid {
+  padding: 0;
+}
+
+.nest-navbar.navbar-hidden {
   transform: translateY(-100%);
 }
 
-.navbar-hidden .dropdown-menu {
+.nest-navbar:focus-within {
+  transform: translateY(0);
+}
+
+.nest-navbar.navbar-hidden:not(:focus-within) .dropdown-menu {
   visibility: hidden;
   pointer-events: none;
 }
 
-.navbar-brand {
-  margin-left: 15px;
-}
-
-.brand-link {
-  align-items: center;
-  color: white;
-  display: flex;
-  font-family: "Idiqlat2", sans-serif;
+.nest-navbar .brand-link {
+  color: #0341c8;
   font-size: 20px;
-  gap: 1px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 2px;
+  padding: 0;
+  margin: 0;
   text-decoration: none;
 }
 
-.brand-link:hover,
-.brand-link:focus {
-  color: white;
+.nest-navbar .brand-link:hover,
+.nest-navbar .brand-link:focus {
+  color: #0341c8;
 }
 
-.brand-logo {
-  height: 46px;
-  width: auto;
-}
-
-.navbar-nav {
-  font-family: "Doppio One", sans-serif;
-  font-size: 17px;
+.nest-navbar .navbar-nav {
+  align-items: center;
+  gap: 18px;
   margin-left: auto;
 }
 
-.navbar .nav-link,
-.navbar .dropdown-toggle {
+.nest-navbar .navbar-nav .nav-link {
   color: white;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: normal;
+  white-space: nowrap;
 }
 
-.navbar .nav-link:hover,
-.navbar .nav-link:focus,
-.navbar .dropdown-toggle:hover,
-.navbar .dropdown-toggle:focus {
-  color: white;
+.nest-navbar .dropdown-toggle::after {
+  display: none;
 }
 
-.navbar .dropdown-menu {
+.nest-navbar .nav-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.nest-navbar a:focus-visible,
+.nest-navbar button:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+  box-shadow: none;
+}
+
+.nest-navbar .dropdown-menu {
   --bs-dropdown-min-width: 0;
   width: max-content;
-  animation: dropdown-slide 180ms ease-out;
-  background-color: #86C5FF;
-  font-family: "Doppio One", sans-serif;
+  max-width: calc(100vw - 48px);
+  margin-top: 16px;
+  padding: 8px;
+  border: 1px solid #dce8f9;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 8px 24px #0341c81a;
+  font-size: 13px;
 }
 
-.navbar .dropdown-item {
-  color: white;
-  font-family: "Doppio One", sans-serif;
-}
-.navbar .dropdown-item:hover,
-.navbar .dropdown-item:focus {
-  background-color: #FAEEBD;
-  color: #212529
+.nest-navbar .nav-item:last-of-type .dropdown-menu {
+  right: 0;
+  left: auto;
 }
 
-@keyframes dropdown-slide {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
+.nest-navbar .dropdown-item {
+  border-radius: 4px;
+  padding: 8px 12px;
+  color: #0341c8;
+  white-space: normal;
+}
+
+.nest-navbar .dropdown-item:hover,
+.nest-navbar .dropdown-item:focus,
+.nest-navbar .dropdown-item.active {
+  background: #e7f0fc;
+  color: #0341c8;
+}
+
+.navigation-cart {
+  display: flex;
+  flex: 0 0 22px;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation-cart img {
+  display: block;
+}
+
+.nest-navbar .navbar-toggler {
+  border-color: #ffffff80;
+  padding: 0 4px;
+  font-size: 16px;
+}
+
+.nest-navbar .navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 991.98px) {
+  .nest-navbar {
+    padding: 32px 24px;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .nest-navbar .navbar-nav {
+    align-items: stretch;
+    gap: 20px;
+    padding-top: 28px;
+  }
+
+  .nest-navbar .dropdown-menu {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nest-navbar {
+    transition: none;
   }
 }
