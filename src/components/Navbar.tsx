@@ -3,42 +3,13 @@ import Nav from "react-bootstrap/Nav";
 import BootstrapNavbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Pages from "../pages.ts";
 import "./Navbar.css";
 
 export function Navbar() {
   const location = useLocation();
-  const [isVisible, setIsVisible] = useState(true);
   const [expanded, setExpanded] = useState(false);
-  const navbarRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    let pointerInNavbar = false;
-    const updateNavbarVisibility = (mouseY?: number) => {
-      const isAtTop = window.scrollY <= 8;
-      const isMouseNearNavbar = mouseY !== undefined && mouseY <= 80;
-
-      setIsVisible(isAtTop || isMouseNearNavbar || pointerInNavbar);
-    };
-
-    const handleScroll = () => updateNavbarVisibility();
-    const handleMouseMove = (event: MouseEvent) => {
-      pointerInNavbar =
-        event.target instanceof Node &&
-        !!navbarRef.current?.contains(event.target);
-      updateNavbarVisibility(event.clientY);
-    };
-
-    updateNavbarVisibility();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, [location.pathname]);
 
   const pages = Pages.filter(
     (item) => !("path" in item && item.path === "/"),
@@ -63,6 +34,9 @@ export function Navbar() {
         <NavDropdown
           key={`page-${pageIndex}`}
           title={item.name}
+          active={item.folder.some(
+            (subpage) => subpage.path === location.pathname,
+          )}
           id={`page-${pageIndex}`}
         >
           {folderItems}
@@ -85,12 +59,11 @@ export function Navbar() {
 
   return (
     <BootstrapNavbar
-      ref={navbarRef}
       expand="lg"
       expanded={expanded}
       onToggle={setExpanded}
       aria-label="Main navigation"
-      className={`nest-navbar ${isVisible || expanded ? "" : "navbar-hidden"}`}
+      className="nest-navbar"
       fixed="top"
     >
       <Container fluid>

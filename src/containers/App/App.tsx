@@ -18,8 +18,11 @@ const App = () => {
       .pop() || "/";
 
   // Set Page Title
-  const currentPage = currentPath in pathMapping ? pathMapping[currentPath] : undefined;
-  const navigationTitle = currentPage ? currentPage.navigationTitle : "Not Found";
+  const currentPage =
+    currentPath in pathMapping ? pathMapping[currentPath] : undefined;
+  const navigationTitle = currentPage
+    ? currentPage.navigationTitle
+    : "Not Found";
 
   useEffect(() => {
     document.title = `${navigationTitle || ""} | ${import.meta.env.VITE_TEAM_NAME} - iGEM ${import.meta.env.VITE_TEAM_YEAR}`;
@@ -79,7 +82,7 @@ const App = () => {
 
       {/* Footer */}
       {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}
-      <Footer />
+      {currentPath !== "/" && <Footer />}
     </div>
   );
 };

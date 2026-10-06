@@ -9,33 +9,22 @@
 .nest-navbar {
   --bs-navbar-padding-y: 0;
   background: linear-gradient(90deg, #a3c4eb 0%, #0341c8 100%);
-  padding: 32px 40px;
+  padding: 20px 40px;
   min-height: 88px;
   font-family: "Work Sans", sans-serif;
   font-weight: 500;
-  transition: transform 260ms ease;
+  z-index: 1030;
+  border-bottom: 1px solid #ffffff30;
+  box-shadow: 0 3px 16px #173c6414;
 }
 
 .nest-navbar > .container-fluid {
   padding: 0;
 }
 
-.nest-navbar.navbar-hidden {
-  transform: translateY(-100%);
-}
-
-.nest-navbar:focus-within {
-  transform: translateY(0);
-}
-
-.nest-navbar.navbar-hidden:not(:focus-within) .dropdown-menu {
-  visibility: hidden;
-  pointer-events: none;
-}
-
 .nest-navbar .brand-link {
   color: #0341c8;
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 2px;
@@ -51,26 +40,31 @@
 
 .nest-navbar .navbar-nav {
   align-items: center;
-  gap: 18px;
+  gap: 8px;
   margin-left: auto;
 }
 
 .nest-navbar .navbar-nav .nav-link {
   color: white;
-  padding: 0;
-  font-size: 13px;
+  padding: 12px 10px;
+  border-radius: 8px;
+  font-size: 16px;
   font-weight: 500;
-  line-height: normal;
+  line-height: 20px;
   white-space: nowrap;
 }
 
 .nest-navbar .dropdown-toggle::after {
-  display: none;
+  display: inline-block;
+  margin-left: 7px;
+  vertical-align: 0.15em;
 }
 
-.nest-navbar .nav-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.nest-navbar .nav-link:hover,
+.nest-navbar .nav-link.active,
+.nest-navbar .nav-link.show {
+  color: white;
+  background: #ffffff24;
 }
 
 .nest-navbar a:focus-visible,
@@ -84,13 +78,13 @@
   --bs-dropdown-min-width: 0;
   width: max-content;
   max-width: calc(100vw - 48px);
-  margin-top: 16px;
+  margin-top: 8px;
   padding: 8px;
   border: 1px solid #dce8f9;
   border-radius: 8px;
   background: white;
   box-shadow: 0 8px 24px #0341c81a;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .nest-navbar .nav-item:last-of-type .dropdown-menu {
@@ -127,8 +121,8 @@
 
 .nest-navbar .navbar-toggler {
   border-color: #ffffff80;
-  padding: 0 4px;
-  font-size: 16px;
+  padding: 10px;
+  font-size: 20px;
 }
 
 .nest-navbar .navbar-toggler-icon {
@@ -137,13 +131,19 @@
 
 @media (max-width: 991.98px) {
   .nest-navbar {
-    padding: 32px 24px;
+    padding: 20px 24px;
   }
 
   .nest-navbar .navbar-nav {
     align-items: stretch;
-    gap: 20px;
-    padding-top: 28px;
+    gap: 4px;
+    padding: 16px 0 4px;
+  }
+
+  .nest-navbar .navbar-collapse {
+    max-height: calc(100dvh - 88px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .nest-navbar .dropdown-menu {

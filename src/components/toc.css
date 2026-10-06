@@ -1,3 +1,16 @@
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.page-article,
+.page-toc {
+  font-family: "Outfit", sans-serif;
+}
+
 .page-article h2,
 .page-article h3 {
   scroll-margin-top: 112px;
@@ -31,7 +44,7 @@
   margin: 0 8px 16px;
   color: inherit;
   font-size: 26px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .page-toc-list {
@@ -49,7 +62,7 @@
   padding: 10px 12px;
   border-left: 3px solid transparent;
   color: inherit;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.5;
   overflow-wrap: anywhere;
   text-decoration: none;

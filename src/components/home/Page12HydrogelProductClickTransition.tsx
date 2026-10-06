@@ -1,9 +1,11 @@
+import { useStory } from "./StoryContext";
 const assetPathPrefix = `${import.meta.env.BASE_URL}images/home`;
 const imgIllustrationHydrogel01 = `${assetPathPrefix}/0ba48.png`;
 const imgMascotLookingUpAtHydrogelRecolored = `${assetPathPrefix}/41743.png`;
 const imgInteractionHydrogelRipple = `${assetPathPrefix}/60f06.svg`;
 
 export default function Page12HydrogelProductClickTransition() {
+  const { next } = useStory();
   return (
     <div
       className="home-layer-63"
@@ -52,19 +54,7 @@ export default function Page12HydrogelProductClickTransition() {
       <button
         type="button"
         aria-label="Continue to the next scene"
-        onClick={(event) => {
-          const next =
-            event.currentTarget.closest("section")?.nextElementSibling;
-          if (next instanceof HTMLElement) {
-            next.scrollIntoView({
-              behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
-                .matches
-                ? "instant"
-                : "smooth",
-            });
-            next.focus({ preventScroll: true });
-          }
-        }}
+        onClick={next}
         className="home-layer-137"
         data-node-id="286:235"
         data-name="Interaction / Click Anywhere / Next"
