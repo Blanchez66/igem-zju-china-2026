@@ -8,6 +8,7 @@ import { Header } from "../../components/Header";
 import { NotFound } from "../../components/NotFound";
 import { Footer } from "../../components/Footer";
 import { Toc } from "../../components/toc";
+import { BackToTop } from "../../components/BackToTop";
 
 const App = () => {
   const location = useLocation();
@@ -79,6 +80,8 @@ const App = () => {
           />
         </Routes>
       </main>
+
+      <BackToTop />
 
       {/* Footer */}
       {/* MUST mention license AND have a link to team wiki's repository on gitlab.igem.org */}

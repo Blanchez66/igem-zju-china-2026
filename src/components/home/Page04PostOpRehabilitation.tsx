@@ -1,10 +1,20 @@
+import { useReducedMotion } from "motion/react";
+
 const assetPathPrefix = `${import.meta.env.BASE_URL}images/home`;
-const imgIllustrationPediatricPostOpRehabilitation = `${assetPathPrefix}/c0553.png`;
+const imgRehabilitationFrame1 = `${assetPathPrefix}/person-3-frame-1.png`;
+const imgRehabilitationFrame2 = `${assetPathPrefix}/person-3-frame-2.png`;
+const imgRehabilitationFrame3 = `${assetPathPrefix}/person-3-frame-3.png`;
 const imgPage04PinkHalo = `${assetPathPrefix}/cf360.svg`;
 const imgPage04YellowHalo = `${assetPathPrefix}/c4d0f.svg`;
 const imgPage04YellowDot = `${assetPathPrefix}/0d3a1.svg`;
 
-export default function Page04PostOpRehabilitation() {
+export default function Page04PostOpRehabilitation({
+  frameProgress,
+}: {
+  frameProgress: number;
+}) {
+  const reduced = useReducedMotion();
+  const frame = reduced ? Math.round(frameProgress) : frameProgress;
   return (
     <div
       className="home-layer-26"
@@ -48,11 +58,30 @@ export default function Page04PostOpRehabilitation() {
         data-name="Illustration / Pediatric Post-op Rehabilitation"
       >
         <img
-          alt=""
+          alt="A young patient progressing through post-operative rehabilitation"
           loading="lazy"
           decoding="async"
-          className="home-layer-31"
-          src={imgIllustrationPediatricPostOpRehabilitation}
+          className="home-layer-31 story-frame-image rehab-frame rehab-frame--1"
+          src={imgRehabilitationFrame1}
+          style={{ opacity: Math.max(0, 1 - frame) }}
+        />
+        <img
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          className="home-layer-31 story-frame-image rehab-frame rehab-frame--2"
+          src={imgRehabilitationFrame2}
+          style={{ opacity: Math.max(0, 1 - Math.abs(frame - 1)) }}
+        />
+        <img
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          className="home-layer-31 story-frame-image rehab-frame rehab-frame--3"
+          src={imgRehabilitationFrame3}
+          style={{ opacity: Math.max(0, frame - 1) }}
         />
       </div>
       <p className="home-layer-32" data-node-id="222:45">

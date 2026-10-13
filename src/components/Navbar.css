@@ -40,15 +40,15 @@
 
 .nest-navbar .navbar-nav {
   align-items: center;
-  gap: 8px;
+  gap: 2px;
   margin-left: auto;
 }
 
 .nest-navbar .navbar-nav .nav-link {
   color: white;
   padding: 12px 10px;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 0;
+  font-size: 18px;
   font-weight: 500;
   line-height: 20px;
   white-space: nowrap;
@@ -64,7 +64,7 @@
 .nest-navbar .nav-link.active,
 .nest-navbar .nav-link.show {
   color: white;
-  background: #ffffff24;
+  background: transparent;
 }
 
 .nest-navbar a:focus-visible,

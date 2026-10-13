@@ -10,12 +10,7 @@ import GlobalBurden from "../components/home/GlobalBurden";
 import Page03SportsTrauma from "../components/home/Page03SportsTrauma";
 import Page04PostOpRehabilitation from "../components/home/Page04PostOpRehabilitation";
 import Page05BirdReturnsToNest from "../components/home/Page05BirdReturnsToNest";
-import Page0610ConnectedBiomanufacturingPipeline from "../components/home/Page0610ConnectedBiomanufacturingPipeline";
-import Page11PremixAssemblyScrollTransition from "../components/home/Page11PremixAssemblyScrollTransition";
-import Page12HydrogelProductClickTransition from "../components/home/Page12HydrogelProductClickTransition";
-import Page13HydrogelLoadingClickTransition from "../components/home/Page13HydrogelLoadingClickTransition";
-import Page14KneeInjectionClickTransition from "../components/home/Page14KneeInjectionClickTransition";
-import Page15NestResolutionFinal from "../components/home/Page15NestResolutionFinal";
+import FigmaProcessContent from "../components/home/FigmaProcessContent";
 import { Footer } from "../components/Footer";
 import "../components/home/layers.css";
 import "./home.css";
@@ -51,7 +46,7 @@ function Scene({
   return (
     <section
       id={`home-${index + 1}`}
-      className={`home-scene${index === 0 ? " home-hero-scene" : ""}${index === 15 ? " home-footer-scene" : ""}`}
+      className={`home-scene${index === 0 ? " home-hero-scene" : ""}${index === 6 ? " home-footer-scene" : ""}`}
       aria-label={name}
       style={style}
       aria-hidden={!active}
@@ -79,20 +74,21 @@ export function Home() {
     page,
     burdenStage,
     burdenProgress,
+    burdenPain,
     birdProgress,
     birdStage,
     birdLandingProgress,
     next,
     scenePosition,
-    lastStop,
+    contentScroll,
     crossfade,
     sportsText,
     sportsArt,
+    sportsFrame,
     rehabText,
     rehabArt,
+    rehabFrame,
     nestTitle,
-    processTitle,
-    processBird,
   } = useStoryNavigation();
   const viewport = useRef<HTMLDivElement>(null);
   const [size, setSize] = useState({ width: 1280, height: 720 });
@@ -144,41 +140,30 @@ export function Home() {
     },
     {
       name: "Global burden",
-      content: <GlobalBurden stage={burdenStage} progress={burdenProgress} />,
+      content: (
+        <GlobalBurden
+          stage={burdenStage}
+          progress={burdenProgress}
+          painProgress={burdenPain}
+        />
+      ),
     },
-    { name: "Sports trauma", content: <Page03SportsTrauma /> },
+    {
+      name: "Sports trauma",
+      content: <Page03SportsTrauma frameProgress={sportsFrame} />,
+    },
     {
       name: "Post-operative rehabilitation",
-      content: <Page04PostOpRehabilitation />,
+      content: <Page04PostOpRehabilitation frameProgress={rehabFrame} />,
     },
     { name: "Return to NEST", content: <Page05BirdReturnsToNest /> },
-    ...Array.from({ length: 5 }, (_, i) => ({
-      name: `NEST process ${i + 1}`,
-      content: (
-        <div className="home-pipeline-window">
-          <div style={{ height: 3600, transform: `translateY(${-720 * i}px)` }}>
-            <Page0610ConnectedBiomanufacturingPipeline />
-          </div>
-        </div>
-      ),
-    })),
-    {
-      name: "Premix assembly",
-      content: <Page11PremixAssemblyScrollTransition />,
-    },
-    {
-      name: "Hydrogel product",
-      content: <Page12HydrogelProductClickTransition />,
-    },
-    {
-      name: "Hydrogel loading",
-      content: <Page13HydrogelLoadingClickTransition />,
-    },
-    { name: "Knee injection", content: <Page14KneeInjectionClickTransition /> },
-    { name: "NEST resolution", content: <Page15NestResolutionFinal /> },
+    { name: "NEST materials and hydrogel", content: <FigmaProcessContent /> },
     { name: "NEST footer", content: <Footer story /> },
   ];
+  const designHeight = (size.width / 1366) * 6934;
   const style = {
+    "--design-scale": size.width / 1366,
+    "--design-height": `${designHeight}px`,
     "--scene-scale": Math.min(size.width / 1280, size.height / 720),
     "--screen-height": `${size.height}px`,
     "--screen-width": `${size.width}px`,
@@ -187,7 +172,7 @@ export function Home() {
     <div
       className="home-scroll-space"
       style={{
-        height: `calc(${(lastStop - 1) * size.height + footerHeight}px + 100dvh)`,
+        height: 17 * size.height + designHeight + footerHeight + 88,
       }}
     >
       <div
@@ -200,7 +185,9 @@ export function Home() {
       >
         <div
           className="story-track"
-          style={{ transform: `translateY(${-scenePosition * size.height}px)` }}
+          style={{
+            transform: `translateY(${-scenePosition * size.height - contentScroll}px)`,
+          }}
         >
           {scenes.map((scene, index) => (
             <Scene
@@ -223,15 +210,9 @@ export function Home() {
                       }
                     : {}),
                   ...(index === 4 ? { "--nest-title": nestTitle } : {}),
-                  ...(index === 5
-                    ? {
-                        "--process-title": processTitle,
-                        "--process-bird": processBird,
-                      }
-                    : {}),
                 } as CSSProperties
               }
-              active={page === index || (index === 15 && scenePosition > 14)}
+              active={page === index || (index === 6 && page === 5)}
               birdProgress={birdProgress}
               birdStage={birdStage}
               birdLandingProgress={birdLandingProgress}

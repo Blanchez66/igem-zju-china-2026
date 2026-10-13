@@ -1,10 +1,19 @@
+import { useReducedMotion } from "motion/react";
+
 const assetPathPrefix = `${import.meta.env.BASE_URL}images/home`;
-const imgIllustrationSportsKneeTrauma = `${assetPathPrefix}/09349.png`;
+const imgSportsTraumaFrame1 = `${assetPathPrefix}/person-2-frame-1.png`;
+const imgSportsTraumaFrame2 = `${assetPathPrefix}/person-2-frame-2.png`;
 const imgPage03PowderDisc = `${assetPathPrefix}/3249a.svg`;
 const imgPage03YellowAccent = `${assetPathPrefix}/ff246.svg`;
 const imgPage03PinkSpark = `${assetPathPrefix}/ea453.svg`;
 
-export default function Page03SportsTrauma() {
+export default function Page03SportsTrauma({
+  frameProgress,
+}: {
+  frameProgress: number;
+}) {
+  const reduced = useReducedMotion();
+  const frame = reduced ? Number(frameProgress >= 0.5) : frameProgress;
   return (
     <div
       className="home-layer-12"
@@ -68,11 +77,21 @@ export default function Page03SportsTrauma() {
         data-name="Illustration / Sports Knee Trauma"
       >
         <img
-          alt=""
+          alt="An athlete holding an injured knee after a sports accident"
           loading="lazy"
           decoding="async"
-          className="home-layer-9"
-          src={imgIllustrationSportsKneeTrauma}
+          className="home-layer-9 story-frame-image"
+          src={imgSportsTraumaFrame1}
+          style={{ opacity: 1 - frame }}
+        />
+        <img
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          decoding="async"
+          className="home-layer-9 story-frame-image"
+          src={imgSportsTraumaFrame2}
+          style={{ opacity: frame }}
         />
       </div>
       <div

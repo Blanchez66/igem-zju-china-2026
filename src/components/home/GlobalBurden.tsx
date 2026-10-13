@@ -4,9 +4,11 @@ const asset = `${import.meta.env.BASE_URL}images/home/`;
 export default function GlobalBurden({
   stage,
   progress,
+  painProgress,
 }: {
   stage: number;
   progress: number;
+  painProgress: number;
 }) {
   const reduced = useReducedMotion();
   const { active } = useStory();
@@ -16,6 +18,9 @@ export default function GlobalBurden({
     ease: "easeOut" as const,
   });
   const statProgress = reduced ? Number(stage >= 2) : progress;
+  const painFrameProgress = reduced
+    ? Number(painProgress >= 0.5)
+    : painProgress;
   const count = Math.round(595000000 * (1 - Math.pow(1 - statProgress, 3)));
   return (
     <div className="global-burden" data-node-id="186:270">
@@ -68,9 +73,19 @@ export default function GlobalBurden({
         transition={{ duration: reduced ? 0 : 0.6, ease: "easeOut" }}
       >
         <img
-          src={`${asset}1530e.png`}
+          className="burden-person-frame"
+          src={`${asset}person-1-frame-1.png`}
           alt="A person experiencing knee pain while climbing stairs"
           loading="lazy"
+          style={{ opacity: 1 - painFrameProgress }}
+        />
+        <img
+          className="burden-person-frame"
+          src={`${asset}person-1-frame-2.png`}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          style={{ opacity: painFrameProgress }}
         />
       </motion.div>
       <div

@@ -28,7 +28,7 @@ export function Toc({
     if (!content || !header) return;
 
     const elements = Array.from(
-      content.querySelectorAll<HTMLElement>("h2, h3"),
+      content.querySelectorAll<HTMLElement>("h2, h3, h4"),
     );
     const column = elements[0]?.closest('[class*="col-"]');
     if (column) {
@@ -122,13 +122,13 @@ export function Toc({
 
   return (
     <>
-      <div ref={headerRef} className={headings.length > 1 ? "page-header-with-toc" : ""}>
+      <div ref={headerRef} className={headings.length > 0 ? "page-header-with-toc" : ""}>
         <Header title={title} lead={lead} columnClassName={headerColumnClass} />
       </div>
       <div
-        className={`page-layout ${headings.length > 1 ? "page-layout-with-toc" : ""}`}
+        className={`page-layout ${headings.length > 0 ? "page-layout-with-toc" : ""}`}
       >
-        {headings.length > 1 && (
+        {headings.length > 0 && (
           <nav
             ref={tocRef}
             aria-label="On this page"

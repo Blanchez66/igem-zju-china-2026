@@ -1,29 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
 
 export const STORY_STOPS = [
-  0, 1, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 4, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12, 13,
-  14, 15,
+  0, 1, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 5,
 ];
-
-// Give each pipe segment twice the scroll distance, without slowing other scenes.
-const PIPE_SCROLL_START = 15;
-const PIPE_SCROLL_END = 19;
-function fromScrollUnits(units: number) {
-  if (units <= PIPE_SCROLL_START) return units;
-  if (units <= PIPE_SCROLL_END + 4)
-    return PIPE_SCROLL_START + (units - PIPE_SCROLL_START) / 2;
-  return units - 4;
-}
-function toScrollUnits(position: number) {
-  if (position <= PIPE_SCROLL_START) return position;
-  if (position <= PIPE_SCROLL_END)
-    return PIPE_SCROLL_START + (position - PIPE_SCROLL_START) * 2;
-  return position + 4;
-}
 
 /** Native scrolling controls the timeline without wheel or touch interception. */
 export function useStoryNavigation() {
   const [position, setPosition] = useState(0);
+  const [contentScroll, setContentScroll] = useState(0);
   useEffect(() => {
     let frame = 0;
     const update = () => {
@@ -32,15 +16,9 @@ export function useStoryNavigation() {
       const viewport = document.querySelector<HTMLElement>(".story-viewport");
       if (!root || !viewport) return;
       const start = root.getBoundingClientRect().top + window.scrollY;
-      setPosition(
-        Math.max(
-          0,
-          Math.min(
-            STORY_STOPS.length - 1,
-            fromScrollUnits((window.scrollY - start) / viewport.clientHeight),
-          ),
-        ),
-      );
+      const units = (window.scrollY - start) / viewport.clientHeight;
+      setContentScroll(Math.max(0, (units - 17) * viewport.clientHeight));
+      setPosition(Math.max(0, Math.min(STORY_STOPS.length - 1, units)));
     };
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -62,7 +40,7 @@ export function useStoryNavigation() {
       top:
         root.getBoundingClientRect().top +
         window.scrollY +
-        toScrollUnits(Math.max(0, Math.min(STORY_STOPS.length - 1, target))) *
+        Math.max(0, Math.min(STORY_STOPS.length - 1, target)) *
           viewport.clientHeight,
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
         ? "instant"
@@ -87,19 +65,23 @@ export function useStoryNavigation() {
       : null,
     sportsText: reveal(5.05),
     sportsArt: reveal(5.5),
-    rehabText: reveal(7.05),
-    rehabArt: reveal(7.5),
-    nestTitle: reveal(9.1),
-    processTitle: reveal(14.05),
-    processBird: reveal(14.5),
-    lastStop: toScrollUnits(STORY_STOPS.length - 1),
+    sportsFrame: Math.max(0, Math.min(1, position - 6)),
+    rehabText: reveal(8.05),
+    rehabArt: reveal(8.5),
+    rehabFrame: Math.max(0, Math.min(2, position - 9)),
+    nestTitle: reveal(12.1),
+    processTitle: reveal(17.05),
+    processBird: reveal(17.5),
+    contentScroll,
     burdenStage: position < 2 ? 0 : position < 3 ? 1 : 2,
+    // Crossfade to the more painful pose during the latter half of this scene.
+    burdenPain: Math.max(0, Math.min(1, position - 2.35)),
     // Finish counting at 3.75, hold the full number, then crossfade at 4.
     burdenProgress: Math.max(0, Math.min(1, (position - 3) / 0.75)),
     // Spread the flight across both stationary bird-scene intervals.
-    birdProgress: Math.max(0, Math.min(1, (position - 10) / 2)),
-    birdStage: position < 11 ? 0 : position < 12 ? 1 : 2,
-    birdLandingProgress: Math.max(0, Math.min(1, (position - 12) / 0.85)),
+    birdProgress: Math.max(0, Math.min(1, (position - 13) / 2)),
+    birdStage: position < 14 ? 0 : position < 15 ? 1 : 2,
+    birdLandingProgress: Math.max(0, Math.min(1, (position - 15) / 0.85)),
     next: () => seek(Math.floor(position + 0.001) + 1),
     previous: () => seek(Math.ceil(position - 0.001) - 1),
   };

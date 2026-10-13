@@ -148,12 +148,37 @@
   height: 442px;
   overflow: hidden;
 }
-.burden-person img {
+.burden-person-frame {
   position: absolute;
   width: 100%;
   height: 93.25%;
   top: 0.9%;
   left: -2.42%;
+  will-change: opacity;
+}
+.story-frame-image {
+  will-change: opacity;
+}
+.rehab-frame {
+  object-fit: fill;
+}
+.rehab-frame--1 {
+  width: 99.54%;
+  height: 80.49%;
+  left: 2.37%;
+  top: 16.29%;
+}
+.rehab-frame--2 {
+  width: 104.73%;
+  height: 79.07%;
+  left: -2.97%;
+  top: 14.99%;
+}
+.rehab-frame--3 {
+  width: 100%;
+  height: 94.69%;
+  left: 0;
+  top: 2.66%;
 }
 .burden-stat {
   position: absolute;
@@ -312,18 +337,6 @@ body.home-story-open .app {
   opacity: var(--nest-title, 1);
   translate: -50% calc((1 - var(--nest-title, 1)) * -42px);
 }
-.story-viewport #home-6 [data-node-id="232:27"] {
-  opacity: var(--process-title, 1);
-  translate: -50% calc((1 - var(--process-title, 1)) * -36px);
-}
-.story-viewport #home-6 [data-node-id="232:51"] {
-  opacity: var(--process-bird, 1) !important;
-  translate: calc((1 - var(--process-bird, 1)) * -100px) 0;
-}
-.story-viewport #home-6 [data-node-id="232:52"] {
-  opacity: calc(var(--process-bird, 1) * 0.2) !important;
-  translate: calc((1 - var(--process-bird, 1)) * -100px) 0;
-}
 @media (prefers-reduced-motion: reduce) {
   .story-viewport #home-5,
   .story-viewport #home-6 {
@@ -387,10 +400,7 @@ body.home-story-open .app {
     --intro-art: 1 !important;
   }
 }
-.story-viewport #home-11 {
-  background: #eef5ff;
-}
-.story-viewport #home-16 {
+.story-viewport .home-footer-scene {
   background: #fff;
 }
 .story-viewport .home-hero-scene .home-scene-canvas {
@@ -465,7 +475,15 @@ body.home-story-open .app {
 .story-viewport #home-5 [data-node-id="186:313"] {
   background: transparent;
 }
-.story-viewport #home-7,
-.story-viewport #home-9 {
-  background: linear-gradient(90deg, #edf5ff, #faf2f7 72%, #fcfaed);
+/* This Figma composition is one continuous, width-scaled canvas. */
+.story-viewport #home-6 {
+  height: var(--design-height);
+}
+.story-viewport #home-6 .home-scene-canvas {
+  width: 1366px;
+  height: 6934px;
+  top: 0;
+  left: 0;
+  transform: scale(var(--design-scale));
+  transform-origin: top left;
 }
