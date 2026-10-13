@@ -7,7 +7,6 @@ export const STORY_STOPS = [
 /** Native scrolling controls the timeline without wheel or touch interception. */
 export function useStoryNavigation() {
   const [position, setPosition] = useState(0);
-  const [contentScroll, setContentScroll] = useState(0);
   useEffect(() => {
     let frame = 0;
     const update = () => {
@@ -17,7 +16,6 @@ export function useStoryNavigation() {
       if (!root || !viewport) return;
       const start = root.getBoundingClientRect().top + window.scrollY;
       const units = (window.scrollY - start) / viewport.clientHeight;
-      setContentScroll(Math.max(0, (units - 17) * viewport.clientHeight));
       setPosition(Math.max(0, Math.min(STORY_STOPS.length - 1, units)));
     };
     const schedule = () => {
@@ -70,9 +68,6 @@ export function useStoryNavigation() {
     rehabArt: reveal(8.5),
     rehabFrame: Math.max(0, Math.min(2, position - 9)),
     nestTitle: reveal(12.1),
-    processTitle: reveal(17.05),
-    processBird: reveal(17.5),
-    contentScroll,
     burdenStage: position < 2 ? 0 : position < 3 ? 1 : 2,
     // Crossfade to the more painful pose during the latter half of this scene.
     burdenPain: Math.max(0, Math.min(1, position - 2.35)),

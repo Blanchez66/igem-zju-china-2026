@@ -1,28 +1,59 @@
-html,
-body,
-#root {
-  background-color: white !important;
+@font-face {
+  font-family: "Outfit";
+  src: url("/fonts/Outfit-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rubik Maps";
+  src: url("/fonts/RubikMaps.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bs-font-sans-serif: "Outfit", sans-serif;
+  --bs-font-monospace: "Outfit", sans-serif;
+  --bs-body-font-family: "Outfit", sans-serif;
 }
 
 body {
-  padding-top: 88px;
+  font-family: "Outfit", sans-serif;
+}
+
+html,
+body,
+#root {
+  background-color: #ebf1fa !important;
 }
 
 .app {
-  background-color: white;
+  background-color: #ebf1fa;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 88px);
+  min-height: 100vh;
 }
 
 .content {
-  background-color: white;
   flex: 1;
+  padding-top: 88px;
+}
+
+.content-page {
+  background-color: #ebf1fa;
+}
+
+.content-home {
+  background-color: #f6faff;
+  padding-top: 0;
 }
 
 html.scrollbar,
 body.scrollbar {
-  --scrollbar-thumb-color: #006CD1;
+  --scrollbar-thumb-color: #006cd1;
   --scrollbar-track-color: transparent;
   scrollbar-color: var(--scrollbar-thumb-color) var(--scrollbar-track-color);
   scrollbar-width: thin;

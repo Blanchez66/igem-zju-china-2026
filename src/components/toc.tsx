@@ -6,11 +6,9 @@ type Heading = { id: string; text: string; level: number };
 
 export function Toc({
   title,
-  lead,
   children,
 }: {
   title: string;
-  lead: string;
   children: ReactNode;
 }) {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -19,7 +17,6 @@ export function Toc({
   const [headings, setHeadings] = useState<Heading[]>([]);
   const [visible, setVisible] = useState(false);
   const [activeId, setActiveId] = useState("");
-  const [headerColumnClass, setHeaderColumnClass] = useState("col-lg-12");
 
   useEffect(() => {
     const content = contentRef.current;
@@ -30,12 +27,6 @@ export function Toc({
     const elements = Array.from(
       content.querySelectorAll<HTMLElement>("h2, h3, h4"),
     );
-    const column = elements[0]?.closest('[class*="col-"]');
-    if (column) {
-      setHeaderColumnClass(Array.from(column.classList)
-        .filter(name => name.startsWith("col-") || name === "mx-auto")
-        .join(" "));
-    }
     const usedIds = new Set(
       Array.from(document.querySelectorAll("[id]"), (node) => node.id),
     );
@@ -65,15 +56,19 @@ export function Toc({
     const update = () => {
       frame = 0;
       const footerRect = footer?.getBoundingClientRect();
-      const footerVisible = !!footerRect &&
-        footerRect.top < window.innerHeight && footerRect.bottom > 0;
+      const footerVisible =
+        !!footerRect &&
+        footerRect.top < window.innerHeight &&
+        footerRect.bottom > 0;
       setVisible(header.getBoundingClientRect().bottom <= 0 && !footerVisible);
       const offset = elements[0]
-        ? parseFloat(window.getComputedStyle(elements[0]).scrollMarginTop) || 112
+        ? parseFloat(window.getComputedStyle(elements[0]).scrollMarginTop) ||
+          112
         : 112;
       let current = elements[0]?.id || "";
       for (const element of elements) {
-        if (element.getBoundingClientRect().top <= offset + 2) current = element.id;
+        if (element.getBoundingClientRect().top <= offset + 2)
+          current = element.id;
         else break;
       }
       setActiveId(current);
@@ -120,10 +115,24 @@ export function Toc({
       list.scrollTop += itemRect.bottom - listRect.bottom;
   }, [activeId, visible]);
 
+  const activeHeadingIndex = headings.findIndex(
+    (heading) => heading.id === activeId,
+  );
+  const activeTopLevelId =
+    activeHeadingIndex >= 0
+      ? headings
+          .slice(0, activeHeadingIndex + 1)
+          .reverse()
+          .find((heading) => heading.level === 1)?.id || ""
+      : "";
+
   return (
     <>
-      <div ref={headerRef} className={headings.length > 0 ? "page-header-with-toc" : ""}>
-        <Header title={title} lead={lead} columnClassName={headerColumnClass} />
+      <div
+        ref={headerRef}
+        className={headings.length > 0 ? "page-header-with-toc" : ""}
+      >
+        <Header title={title} />
       </div>
       <div
         className={`page-layout ${headings.length > 0 ? "page-layout-with-toc" : ""}`}
@@ -139,7 +148,11 @@ export function Toc({
               {headings.map((heading) => (
                 <li
                   key={heading.id}
-                  className={`page-toc-level-${heading.level}`}
+                  className={`page-toc-level-${heading.level}${
+                    heading.level === 1 && heading.id === activeTopLevelId
+                      ? " page-toc-section-current"
+                      : ""
+                  }`}
                 >
                   <a
                     href={`#${heading.id}`}

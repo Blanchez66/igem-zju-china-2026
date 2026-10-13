@@ -7,7 +7,7 @@
   gap: 40px;
   background: #173b64;
   color: #fff;
-  font-family: "Work Sans", sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 15px;
   font-weight: 500;
   line-height: 1.1;
@@ -50,7 +50,10 @@
 }
 
 .footer--story {
-  position: relative;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
   width: 100%;
   min-height: 278px;
   margin-top: 0;

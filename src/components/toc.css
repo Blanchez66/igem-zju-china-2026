@@ -1,11 +1,3 @@
-@font-face {
-  font-family: "Outfit";
-  src: url("/fonts/Outfit-VariableFont_wght.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 .page-article,
 .page-toc {
   font-family: "Outfit", sans-serif;
@@ -16,6 +8,24 @@
   scroll-margin-top: 112px;
 }
 
+.page-article p,
+.page-article li {
+  font-size: 21px;
+  line-height: 1.7;
+}
+
+.page-article h2 {
+  font-size: 2rem;
+}
+
+.page-article h3 {
+  font-size: 1.75rem;
+}
+
+.page-article h4 {
+  font-size: 1.5rem;
+}
+
 .page-toc {
   position: fixed;
   top: 104px;
@@ -23,7 +33,6 @@
   width: 248px;
   max-height: calc(100dvh - 128px);
   padding: 20px 12px;
-  background: white;
   z-index: 1020;
   opacity: 0;
   visibility: hidden;
@@ -42,8 +51,8 @@
 
 .page-toc-title {
   margin: 0 8px 16px;
-  color: inherit;
-  font-size: 26px;
+  color: #456682;
+  font-size: 28px;
   font-weight: 400;
 }
 
@@ -60,38 +69,62 @@
 .page-toc-list a {
   display: block;
   padding: 10px 12px;
-  border-left: 3px solid transparent;
-  color: inherit;
-  font-size: 18px;
+  border-left: 5px solid transparent;
+  color: #456682;
+  font-size: 20px;
   line-height: 1.5;
   overflow-wrap: anywhere;
   text-decoration: none;
 }
 
 .page-toc-level-2 a {
-  padding-left: 28px;
-  font-size: 15px;
+  margin-left: 20px;
+  padding-left: 12px;
+  font-size: 18px;
 }
+
+.page-toc-level-1.page-toc-section-current > a {
+  border-left-color: currentColor;
+  color: #0c4dc6;
+  font-weight: 600;
+}
+
 .page-toc-list a:hover {
-  text-decoration: underline;
+  background: #d3e2f4;
 }
 .page-toc-list a[aria-current="location"] {
   border-left-color: currentColor;
-  font-weight: 700;
+  font-size: 20px;
+  color: #0c4dc6;
+  font-weight: 600;
 }
 .page-toc-list a:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: -2px;
 }
 
+@media (min-width: 992px) {
+  /* Use Design's 10/12-column reading width on every standard content page. */
+  .page-article > .row {
+    width: 83.333333%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  /* Design and Experiments already include a 10/12 column internally. */
+  .page-article > .row > .col-lg-10.mx-auto {
+    width: 100%;
+  }
+}
+
 @media (min-width: 1200px) {
   .page-layout-with-toc,
   .page-header-with-toc {
     padding-left: 288px;
-    padding-right: 24px;
+    padding-right: 144px;
   }
   .page-layout-with-toc .page-article,
-  .page-header-with-toc .header > .container {
+  .page-header-with-toc .header {
     max-width: 1100px;
   }
 }

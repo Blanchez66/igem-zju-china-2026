@@ -3,7 +3,13 @@ import { useEffect, useRef } from "react";
 import { setup, render } from "./water-shader";
 
 /** Adapter for the original Figma WGSL shader; a gradient remains if WebGPU is unavailable. */
-export function WaterSurface() {
+export function WaterSurface({
+  className = "home-water",
+  variant = "blue",
+}: {
+  className?: string;
+  variant?: "blue" | "yellow";
+}) {
   const ref = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     let disposed = false;
@@ -15,8 +21,14 @@ export function WaterSurface() {
         center: { x: 50, y: 50 },
         scale: 1,
         playhead: 0,
-        highlightColor: { r: 0.804, g: 0.961, b: 1, a: 1 },
-        waterColor: { r: 0, g: 0.388, b: 0.706, a: 1 },
+        highlightColor:
+          variant === "yellow"
+            ? { r: 1, g: 0.985, b: 0.82, a: 1 }
+            : { r: 0.804, g: 0.961, b: 1, a: 1 },
+        waterColor:
+          variant === "yellow"
+            ? { r: 1, g: 0.78, b: 0.25, a: 1 }
+            : { r: 0, g: 0.388, b: 0.706, a: 1 },
         intensity: 0.5,
       },
     };
@@ -62,6 +74,6 @@ export function WaterSurface() {
       frame.state.uniformBuf?.destroy();
       device?.destroy();
     };
-  }, []);
-  return <canvas ref={ref} className="home-water" aria-hidden="true" />;
+  }, [variant]);
+  return <canvas ref={ref} className={className} aria-hidden="true" />;
 }

@@ -1,0 +1,114 @@
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #ebf1fa;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.loading-screen--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.loading-screen__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 3vh, 30px);
+  transform: translateY(-2vh);
+}
+
+.loading-screen__bird {
+  --bird-width: clamp(146px, 18vw, 205px);
+  position: relative;
+  width: var(--bird-width);
+  aspect-ratio: 899 / 1064;
+  overflow: hidden;
+  animation: loading-bird-float 1.8s ease-in-out infinite;
+}
+
+.loading-screen__bird img {
+  position: absolute;
+  width: calc(var(--bird-width) * 2.62514);
+  max-width: none;
+  height: auto;
+  left: calc(var(--bird-width) * -1.61179);
+  top: calc(var(--bird-width) * -0.39266);
+  user-select: none;
+}
+
+.loading-screen__label {
+  display: flex;
+  align-items: baseline;
+  color: #173b64;
+  font-family: "Outfit", sans-serif;
+  font-size: clamp(56px, 2.2vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.035em;
+}
+
+.loading-screen__dots {
+  display: inline-flex;
+  width: 1.5em;
+}
+
+.loading-screen__dots span {
+  animation: loading-dot 1.2s ease-in-out infinite;
+  opacity: 0.2;
+}
+
+.loading-screen__dots span:nth-child(2) {
+  animation-delay: 160ms;
+}
+
+.loading-screen__dots span:nth-child(3) {
+  animation-delay: 320ms;
+}
+
+@keyframes loading-bird-float {
+  0%,
+  100% {
+    transform: translateY(8px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes loading-dot {
+  0%,
+  20% {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+  45% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  70%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen {
+    transition-duration: 1ms;
+  }
+
+  .loading-screen__bird,
+  .loading-screen__dots span {
+    animation: none;
+  }
+
+  .loading-screen__dots span {
+    opacity: 1;
+  }
+}
